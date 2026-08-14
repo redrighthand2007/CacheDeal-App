@@ -1,6 +1,6 @@
-# Denzo — Implementation Plan
+# CacheDeal — Implementation Plan
 
-Build a campus buy/sell Android app for VIT Vellore students, following the [PRD](file:///e:/D%20A%20N%20G%20E%20R/PROJECTS/vit%20platform/prd%201/denzo-prd.md). Sellers list items with prices; buyers make cash offers; the seller picks one; both connect via WhatsApp and settle the deal face-to-face.
+Build a campus buy/sell Android app for VIT Vellore students, following the [PRD](cachedeal-prd.md). Sellers list items with prices; buyers make cash offers; the seller picks one; both connect via WhatsApp and settle the deal face-to-face.
 
 ## User Review Required
 
@@ -8,7 +8,7 @@ Build a campus buy/sell Android app for VIT Vellore students, following the [PRD
 > **Firebase Project Setup**: You will need to create a Firebase project in the [Firebase Console](https://console.firebase.google.com/), enable **Phone Authentication**, **Cloud Firestore**, and **Firebase Storage**, then download the `google-services.json` file and place it in the `app/` directory. This must be done manually before the app can run.
 
 > [!IMPORTANT]
-> **App Identity**: The plan uses the package name `com.vit.denzo`. Please confirm this is acceptable, or provide your preferred package name.
+> **App Identity**: The plan uses the package name `com.vit.cachedeal`. Please confirm this is acceptable, or provide your preferred package name.
 
 > [!WARNING]
 > **Phone Auth Testing**: Firebase Phone Auth on emulators requires adding test phone numbers in the Firebase Console. Real device testing with actual SMS costs apply after the free tier (10 SMS/day).
@@ -16,7 +16,7 @@ Build a campus buy/sell Android app for VIT Vellore students, following the [PRD
 ## Open Questions
 
 > [!IMPORTANT]
-> 1. **App Name**: The PRD says "Denzo". Should the display name be exactly this, or something shorter like "DealLocker" or "CampusDeals"?
+> 1. **App Name**: The PRD says "CacheDeal". Should the display name be exactly this, or something shorter like "DealLocker" or "CampusDeals"?
 > 2. **Hostel Block List**: What are the exact hostel/block names to include in the dropdown? (e.g., Men's Hostel A, B, C… / Ladies' Hostel A, B… / etc.)
 > 3. **"Near Me" Filter Logic**: Should "near me" match only the exact same block, or also adjacent blocks? If adjacent, what defines adjacency?
 > 4. **Color Scheme / Branding**: Any preferences for primary colors / theme? The plan defaults to a vibrant dark-mode-first Material 3 dynamic theme with a teal/cyan accent palette.
@@ -44,7 +44,7 @@ Build a campus buy/sell Android app for VIT Vellore students, following the [PRD
 ## Project Structure
 
 ```
-com.vit.denzo/
+com.vit.cachedeal/
 ├── App.kt                          // @HiltAndroidApp Application class
 ├── MainActivity.kt                 // Single-activity, sets Compose content
 │
@@ -166,7 +166,7 @@ com.vit.denzo/
 
 #### [NEW] Android project via `android create`
 
-Use the `android create empty-activity` CLI command to scaffold a new Compose project with the name "Denzo" and package `com.vit.denzo`.
+Use the `android create empty-activity` CLI command to scaffold a new Compose project with the name "CacheDeal" and package `com.vit.cachedeal`.
 
 ---
 
@@ -211,7 +211,7 @@ User must manually download this from Firebase Console after project setup.
 - **Color.kt**: Dark-mode-first palette with teal/cyan primary, dark surface colors, semantic green/red for reputation dots
 - **Type.kt**: Typography scale using Google Font (Inter or Outfit)
 - **Shape.kt**: Rounded corner tokens (8dp, 12dp, 16dp, 24dp)
-- **Theme.kt**: `denzoTheme` composable wrapping `MaterialTheme`
+- **Theme.kt**: `cachedealTheme` composable wrapping `MaterialTheme`
 
 #### [NEW] `core/designsystem/component/` — Shared UI Components
 

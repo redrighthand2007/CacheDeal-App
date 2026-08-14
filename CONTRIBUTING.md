@@ -1,6 +1,6 @@
-# 🤝 Contributing to Denzo
+# 🤝 Contributing to CacheDeal
 
-First off, thank you for considering contributing to Denzo! It's people like you that make this app a great tool for the VIT campus community.
+First off, thank you for considering contributing to CacheDeal! It's people like you that make this app a great tool for the VIT campus community.
 
 ## 📋 Table of Contents
 
@@ -19,7 +19,7 @@ This project adheres to a [Code of Conduct](CODE_OF_CONDUCT.md). By participatin
 ## 🚀 Getting Started
 
 1. Fork the repository
-2. Clone your fork: `git clone https://github.com/YOUR_USERNAME/denzo.git`
+2. Clone your fork: `git clone https://github.com/YOUR_USERNAME/cachedeal.git`
 3. Create a feature branch: `git checkout -b feature/amazing-feature`
 4. Make your changes
 5. Commit your changes (see [Commit Convention](#commit-convention))
@@ -47,14 +47,14 @@ This project adheres to a [Code of Conduct](CODE_OF_CONDUCT.md). By participatin
 
 ### 🐛 Reporting Bugs
 
-- Use the [Bug Report](https://github.com/YOUR_USERNAME/denzo/issues/new?template=bug_report.md) issue template
+- Use the [Bug Report](https://github.com/YOUR_USERNAME/cachedeal/issues/new?template=bug_report.md) issue template
 - Include detailed steps to reproduce
 - Add screenshots if applicable
 - Specify your device and Android version
 
 ### ✨ Suggesting Features
 
-- Use the [Feature Request](https://github.com/YOUR_USERNAME/denzo/issues/new?template=feature_request.md) issue template
+- Use the [Feature Request](https://github.com/YOUR_USERNAME/cachedeal/issues/new?template=feature_request.md) issue template
 - Explain the problem your feature solves
 - Provide mockups if possible
 

@@ -1,4 +1,4 @@
-# Denzo — Product Requirements Document
+# CacheDeal — Product Requirements Document
 
 **Platform:** Android (Kotlin, Jetpack Compose)
 **Backend:** Firebase (Auth + Firestore + Storage)

@@ -1,7 +1,7 @@
 <div align="center">
 
 <!-- Banner Image -->
-<img src="assets/banner.jpg" alt="Denzo Banner" width="100%"/>
+<img src="assets/banner.jpg" alt="CacheDeal Banner" width="100%"/>
 
 <br/>
 <br/>
@@ -15,10 +15,10 @@
 
 <br/>
 
-[![Build Status](https://img.shields.io/github/actions/workflow/status/YOUR_USERNAME/denzo/android-ci.yml?branch=main&style=flat-square&label=CI&logo=githubactions)](https://github.com/YOUR_USERNAME/denzo/actions)
-[![Issues](https://img.shields.io/github/issues/YOUR_USERNAME/denzo?style=flat-square&color=FF6B6B)](https://github.com/YOUR_USERNAME/denzo/issues)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/redrighthand2007/CacheDeal-App/android-ci.yml?branch=main&style=flat-square&label=CI&logo=githubactions)](https://github.com/redrighthand2007/CacheDeal-App/actions)
+[![Issues](https://img.shields.io/github/issues/redrighthand2007/CacheDeal-App?style=flat-square&color=FF6B6B)](https://github.com/redrighthand2007/CacheDeal-App/issues)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen?style=flat-square)](CONTRIBUTING.md)
-[![Stars](https://img.shields.io/github/stars/YOUR_USERNAME/denzo?style=flat-square&color=FFD700)](https://github.com/YOUR_USERNAME/denzo/stargazers)
+[![Stars](https://img.shields.io/github/stars/redrighthand2007/CacheDeal-App?style=flat-square&color=FFD700)](https://github.com/redrighthand2007/CacheDeal-App/stargazers)
 
 ---
 
@@ -170,7 +170,7 @@ The trust system is **automatic and abuse-resistant** — no manual reporting ne
 ## 📂 Project Structure
 
 ```
-com.vit.denzo/
+com.vit.cachedeal/
 ├── 📱 App.kt & MainActivity.kt
 │
 ├── 🎨 core/
@@ -217,8 +217,8 @@ com.vit.denzo/
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/YOUR_USERNAME/denzo.git
-cd denzo
+git clone https://github.com/redrighthand2007/CacheDeal-App.git
+cd CacheDeal-App
 
 # 2. Add your Firebase config
 # Download google-services.json from Firebase Console
@@ -336,7 +336,7 @@ Distributed under the **MIT License**. See [LICENSE](LICENSE) for more informati
 
 **Built with ❤️ for VIT Vellore Campus**
 
-<img src="assets/logo.jpg" alt="Denzo Logo" width="80"/>
+<img src="assets/logo.jpg" alt="CacheDeal Logo" width="80"/>
 
 <br/>
 

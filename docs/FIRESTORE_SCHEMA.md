@@ -1,6 +1,6 @@
 # 🗄️ Firestore Database Schema
 
-This document describes the Cloud Firestore data model for Denzo.
+This document describes the Cloud Firestore data model for CacheDeal.
 
 ## Collections Overview
 

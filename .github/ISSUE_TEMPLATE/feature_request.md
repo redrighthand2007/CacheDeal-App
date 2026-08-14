@@ -1,6 +1,6 @@
 ---
 name: "✨ Feature Request"
-about: Suggest a new feature for Denzo
+about: Suggest a new feature for CacheDeal
 title: "[FEATURE] "
 labels: enhancement
 assignees: ''

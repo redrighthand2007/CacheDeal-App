@@ -2,7 +2,7 @@
 
 ## High-Level Architecture
 
-Denzo follows **MVVM + Clean Architecture** principles, ensuring separation of concerns, testability, and scalability.
+CacheDeal follows **MVVM + Clean Architecture** principles, ensuring separation of concerns, testability, and scalability.
 
 ```
 ┌─────────────────────────────────────────────────────┐

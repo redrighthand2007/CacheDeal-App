@@ -1,6 +1,6 @@
 ---
 name: "🐛 Bug Report"
-about: Report a bug to help us improve Denzo
+about: Report a bug to help us improve CacheDeal
 title: "[BUG] "
 labels: bug, triage
 assignees: ''

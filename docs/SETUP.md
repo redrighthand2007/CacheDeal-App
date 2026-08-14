@@ -1,6 +1,6 @@
 # 🛠️ Development Setup Guide
 
-Follow this guide to set up the Denzo project for local development.
+Follow this guide to set up the CacheDeal project for local development.
 
 ## Prerequisites
 
@@ -16,8 +16,8 @@ Follow this guide to set up the Denzo project for local development.
 ## 📱 Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/denzo.git
-cd denzo
+git clone https://github.com/YOUR_USERNAME/cachedeal.git
+cd cachedeal
 ```
 
 ## 🔥 Step 2: Firebase Setup
@@ -25,15 +25,15 @@ cd denzo
 ### 2.1 Create Firebase Project
 
 1. Go to [Firebase Console](https://console.firebase.google.com/)
-2. Click **"Add project"** → Name it `denzo`
+2. Click **"Add project"** → Name it `cachedeal`
 3. Disable Google Analytics (optional for v1)
 4. Click **Create project**
 
 ### 2.2 Register Android App
 
 1. In Firebase Console → **Add app** → **Android**
-2. Package name: `com.vit.denzo`
-3. App nickname: `Denzo`
+2. Package name: `com.vit.cachedeal`
+3. App nickname: `CacheDeal`
 4. Debug signing certificate SHA-1:
    ```bash
    # From Android Studio terminal:
@@ -113,7 +113,7 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for detailed architecture documentation.
 
 ### "google-services.json not found"
 - Ensure the file is in the `app/` directory (not the project root)
-- Check that the package name in the JSON matches `com.vit.denzo`
+- Check that the package name in the JSON matches `com.vit.cachedeal`
 
 ### "Phone Auth not working on emulator"
 - Add test phone numbers in Firebase Console
