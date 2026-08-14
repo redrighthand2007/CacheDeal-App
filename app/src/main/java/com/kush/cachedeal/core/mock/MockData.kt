@@ -9,6 +9,7 @@ import com.kush.cachedeal.core.model.User
 import java.util.Date
 
 object MockData {
+    var isGuestMode: Boolean = false
 
     val currentUser = User(
         uid = "user_kush",

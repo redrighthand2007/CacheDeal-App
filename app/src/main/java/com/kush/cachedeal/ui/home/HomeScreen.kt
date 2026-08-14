@@ -58,6 +58,10 @@ import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.runtime.rememberCoroutineScope
+import kotlinx.coroutines.launch
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
@@ -115,6 +119,12 @@ fun HomeScreen(navController: NavController) {
 
     // Grid scroll state — used for FAB hide/show and top bar shrink
     val gridState = rememberLazyGridState()
+    val isFabVisible by remember {
+        derivedStateOf { gridState.firstVisibleItemIndex == 0 && !MockData.isGuestMode }
+    }
+    
+    val snackbarHostState = remember { SnackbarHostState() }
+    val scope = rememberCoroutineScope()
     val isScrolled by remember {
         derivedStateOf {
             gridState.firstVisibleItemIndex > 0 || gridState.firstVisibleItemScrollOffset > 10
@@ -135,16 +145,21 @@ fun HomeScreen(navController: NavController) {
     Scaffold(
         containerColor = MaterialTheme.colorScheme.background,
         contentWindowInsets = WindowInsets(0),
+        snackbarHost = { androidx.compose.material3.SnackbarHost(snackbarHostState) },
         bottomBar = {
             CacheDealBottomBar(
                 selectedIndex = selectedTabIndex,
                 onTabSelected = { index ->
-                    selectedTabIndex = index
-                    when (index) {
-                        0 -> { /* Stay on HomeScreen */ }
-                        1 -> navController.navigate(MyListingsRoute) { launchSingleTop = true }
-                        2 -> navController.navigate(DealsRoute) { launchSingleTop = true }
-                        3 -> navController.navigate(ProfileRoute) { launchSingleTop = true }
+                    if (MockData.isGuestMode && index != 0) {
+                        scope.launch { snackbarHostState.showSnackbar("Sign in to access this feature") }
+                    } else {
+                        selectedTabIndex = index
+                        when (index) {
+                            0 -> { /* Stay on HomeScreen */ }
+                            1 -> navController.navigate(MyListingsRoute) { launchSingleTop = true }
+                            2 -> navController.navigate(DealsRoute) { launchSingleTop = true }
+                            3 -> navController.navigate(ProfileRoute) { launchSingleTop = true }
+                        }
                     }
                 }
             )
@@ -264,7 +279,13 @@ fun HomeScreen(navController: NavController) {
                     ) { item ->
                         ItemCard(
                             item = item,
-                            onClick = { navController.navigate(ItemDetailRoute(item.id)) },
+                            onClick = {
+                            if (MockData.isGuestMode) {
+                                scope.launch { snackbarHostState.showSnackbar("Sign in to view details or buy items") }
+                            } else {
+                                navController.navigate(ItemDetailRoute(item.id))
+                            }
+                        },
                             modifier = Modifier.animateItem(
                                 fadeInSpec = tween(300),
                                 fadeOutSpec = tween(200)

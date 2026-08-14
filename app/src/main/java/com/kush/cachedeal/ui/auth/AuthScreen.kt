@@ -1,4 +1,4 @@
-﻿package com.kush.cachedeal.ui.auth
+package com.kush.cachedeal.ui.auth
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
@@ -182,7 +182,13 @@ fun AuthScreen(navController: NavController) {
                         AuthStep.PHONE -> PhoneStep(
                             phone = phone,
                             onPhoneChange = { if (it.length <= 10 && it.all(Char::isDigit)) phone = it },
-                            onSendOtp = { if (phone.length == 10) currentStep = AuthStep.OTP }
+                            onSendOtp = { if (phone.length == 10) currentStep = AuthStep.OTP },
+                            onGuestLogin = {
+                                com.kush.cachedeal.core.mock.MockData.isGuestMode = true
+                                navController.navigate(com.kush.cachedeal.ui.navigation.HomeRoute) {
+                                    popUpTo(0) { inclusive = true }
+                                }
+                            }
                         )
                         AuthStep.OTP -> OtpStep(
                             phone = phone,
@@ -205,7 +211,8 @@ fun AuthScreen(navController: NavController) {
 private fun PhoneStep(
     phone: String,
     onPhoneChange: (String) -> Unit,
-    onSendOtp: () -> Unit
+    onSendOtp: () -> Unit,
+    onGuestLogin: () -> Unit
 ) {
     val focusManager = LocalFocusManager.current
 
@@ -299,6 +306,16 @@ private fun PhoneStep(
             onClick = onSendOtp,
             enabled = phone.length == 10
         )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        TextButton(onClick = onGuestLogin) {
+            Text(
+                "Continue as Guest",
+                style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.SemiBold),
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        }
     }
 }
 
