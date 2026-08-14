@@ -24,4 +24,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "CacheDeal"
 include(":app")
+include(":app")
  
