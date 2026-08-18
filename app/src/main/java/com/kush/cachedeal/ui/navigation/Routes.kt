@@ -9,7 +9,10 @@ data object SplashRoute
 data object AuthRoute
 
 @Serializable
-data object OnboardingRoute
+data object SignUpRoute
+
+@Serializable
+data object LoginRoute
 
 @Serializable
 data object HomeRoute

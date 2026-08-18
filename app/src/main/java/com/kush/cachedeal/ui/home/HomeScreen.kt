@@ -84,6 +84,7 @@ import com.kush.cachedeal.core.designsystem.component.ItemCard
 import com.kush.cachedeal.core.mock.MockData
 import com.kush.cachedeal.core.model.Category
 import com.kush.cachedeal.ui.navigation.DealsRoute
+import com.kush.cachedeal.ui.navigation.HomeRoute
 import com.kush.cachedeal.ui.navigation.ItemDetailRoute
 import com.kush.cachedeal.ui.navigation.MyListingsRoute
 import com.kush.cachedeal.ui.navigation.PostItemRoute
@@ -218,11 +219,6 @@ fun HomeScreen(navController: NavController) {
                 horizontalArrangement = Arrangement.spacedBy(14.dp),
                 modifier = Modifier.fillMaxSize()
             ) {
-                // Search bar
-                item(span = { GridItemSpan(2) }) {
-                    SearchBarUI()
-                }
-
                 // Category chips
                 item(span = { GridItemSpan(2) }) {
                     CategoryChipRow(
@@ -231,12 +227,17 @@ fun HomeScreen(navController: NavController) {
                     )
                 }
 
-                // Near Me toggle
+                // Location toggle
                 item(span = { GridItemSpan(2) }) {
                     NearMeToggle(
                         nearMeEnabled = nearMeEnabled,
                         onToggle = { nearMeEnabled = it }
                     )
+                }
+
+                // Search bar
+                item(span = { GridItemSpan(2) }) {
+                    SearchBarUI()
                 }
 
                 // Section label + count
@@ -280,12 +281,14 @@ fun HomeScreen(navController: NavController) {
                         ItemCard(
                             item = item,
                             onClick = {
-                            if (MockData.isGuestMode) {
-                                scope.launch { snackbarHostState.showSnackbar("Sign in to view details or buy items") }
-                            } else {
-                                navController.navigate(ItemDetailRoute(item.id))
-                            }
-                        },
+                                if (item.sellerId == "sample") {
+                                    // Sample items are non-interactive
+                                } else if (MockData.isGuestMode) {
+                                    scope.launch { snackbarHostState.showSnackbar("Sign in to view details or buy items") }
+                                } else {
+                                    navController.navigate(ItemDetailRoute(item.id))
+                                }
+                            },
                             modifier = Modifier.animateItem(
                                 fadeInSpec = tween(300),
                                 fadeOutSpec = tween(200)
@@ -343,7 +346,15 @@ private fun CacheDealTopHeader(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Row(verticalAlignment = Alignment.Bottom) {
+                Row(
+                    verticalAlignment = Alignment.Bottom,
+                    modifier = Modifier.clickable(
+                        indication = null,
+                        interactionSource = remember { MutableInteractionSource() }
+                    ) {
+                        // Tapping CacheDeal logo returns to main screen default
+                    }
+                ) {
                     Text(
                         text = "Cache",
                         style = MaterialTheme.typography.headlineMedium,
@@ -498,7 +509,7 @@ private fun NearMeToggle(
     nearMeEnabled: Boolean,
     onToggle: (Boolean) -> Unit
 ) {
-    val options = listOf("All Campus", "Near Me \uD83D\uDCCD")
+    val options = listOf("Campus", "Hostel Block")
 
     Box(
         modifier = Modifier

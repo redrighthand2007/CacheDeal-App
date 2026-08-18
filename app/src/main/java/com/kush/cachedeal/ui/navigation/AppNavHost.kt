@@ -11,7 +11,7 @@ import com.kush.cachedeal.ui.home.HomeScreen
 import com.kush.cachedeal.ui.itemdetail.ItemDetailScreen
 import com.kush.cachedeal.ui.mylistings.MyListingsScreen
 import com.kush.cachedeal.ui.offers.OffersScreen
-import com.kush.cachedeal.ui.onboarding.OnboardingScreen
+
 import com.kush.cachedeal.ui.postitem.PostItemScreen
 import com.kush.cachedeal.ui.profile.ProfileScreen
 import com.kush.cachedeal.ui.splash.SplashScreen
@@ -30,8 +30,11 @@ fun AppNavHost() {
         composable<AuthRoute> {
             AuthScreen(navController = navController)
         }
-        composable<OnboardingRoute> {
-            OnboardingScreen(navController = navController)
+        composable<SignUpRoute> {
+            com.kush.cachedeal.ui.auth.SignUpScreen(navController = navController)
+        }
+        composable<LoginRoute> {
+            com.kush.cachedeal.ui.auth.LoginScreen(navController = navController)
         }
         composable<HomeRoute> {
             HomeScreen(navController = navController)

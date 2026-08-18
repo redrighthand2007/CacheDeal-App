@@ -11,25 +11,58 @@ import java.util.Date
 object MockData {
     var isGuestMode: Boolean = false
 
-    val currentUser = User(
+    var currentUser = User(
         uid = "user_kush",
         phone = "+919876543210",
+        email = "kush@vit.ac.in",
         name = "Kush Agheera",
         block = "Men's Hostel G",
+        password = "kush1234",
         greenDots = 5,
         redDots = 1
     )
 
-    val users = listOf(
-        currentUser,
-        User(uid = "u2", phone = "+919876500001", name = "Arjun Mehta", block = "Men's Hostel A", greenDots = 8, redDots = 0),
-        User(uid = "u3", phone = "+919876500002", name = "Priya Sharma", block = "Ladies' Hostel C", greenDots = 3, redDots = 2),
-        User(uid = "u4", phone = "+919876500003", name = "Rahul Nair", block = "Men's Hostel B", greenDots = 12, redDots = 1),
-        User(uid = "u5", phone = "+919876500004", name = "Sneha Patel", block = "Ladies' Hostel A", greenDots = 6, redDots = 0),
-        User(uid = "u6", phone = "+919876500005", name = "Dev Kapoor", block = "Men's Hostel H", greenDots = 2, redDots = 3),
+    val registeredUsers = mutableListOf(
+        User(uid = "user_kush", phone = "+919876543210", email = "kush@vit.ac.in", name = "Kush Agheera", block = "Men's Hostel G", password = "kush1234", greenDots = 5, redDots = 1),
+        User(uid = "u2", phone = "+919876500001", email = "arjun@vit.ac.in", name = "Arjun Mehta", block = "Men's Hostel A", password = "arjun123", greenDots = 8, redDots = 0),
+        User(uid = "u3", phone = "+919876500002", email = "priya@vit.ac.in", name = "Priya Sharma", block = "Ladies' Hostel C", password = "priya123", greenDots = 3, redDots = 2),
+        User(uid = "u4", phone = "+919876500003", email = "rahul@vit.ac.in", name = "Rahul Nair", block = "Men's Hostel B", password = "rahul123", greenDots = 12, redDots = 1),
+        User(uid = "u5", phone = "+919876500004", email = "sneha@vit.ac.in", name = "Sneha Patel", block = "Ladies' Hostel A", password = "sneha123", greenDots = 6, redDots = 0),
+        User(uid = "u6", phone = "+919876500005", email = "dev@vit.ac.in", name = "Dev Kapoor", block = "Men's Hostel H", password = "dev12345", greenDots = 2, redDots = 3),
     )
 
-    val items = listOf(
+    val users get() = registeredUsers.toList()
+
+    // ─── Sample items (one per category, non-interactive placeholders) ────────
+    val sampleItems = Category.entries.map { category ->
+        val (title, description) = when (category) {
+            Category.EATABLES -> "Balaji Wafer Pack" to "Sample item — represents the Eatables category"
+            Category.WEARABLES -> "Campus Hoodie" to "Sample item — represents the Wearables category"
+            Category.CYCLES -> "Campus Bicycle" to "Sample item — represents the Cycles category"
+            Category.CALCULATORS -> "Scientific Calculator" to "Sample item — represents the Calculators category"
+            Category.LAB_COATS -> "White Lab Coat" to "Sample item — represents the Lab Coats category"
+            Category.SUBSCRIPTIONS -> "Streaming Subscription" to "Sample item — represents the Subscription Plans category"
+            Category.STUDY_NOTES -> "Handwritten Notes" to "Sample item — represents the Study Notes category"
+            Category.GAME_ACCOUNTS -> "Gaming Account" to "Sample item — represents the Game Accounts category"
+        }
+        Item(
+            id = "sample_${category.name.lowercase()}",
+            sellerId = "sample",
+            sellerName = "CacheDeal",
+            sellerBlock = "",
+            sellerGreenDots = 0,
+            sellerRedDots = 0,
+            category = category.displayName,
+            title = title,
+            description = description,
+            price = 0.0,
+            photoUrl = "android.resource://com.kush.cachedeal/drawable/sample_${category.name.lowercase()}",
+            status = "sample"
+        )
+    }
+
+    // ─── Real listed items ────────────────────────────────────────────────────
+    val realItems = listOf(
         Item(
             id = "item1",
             sellerId = "u2",
@@ -172,7 +205,10 @@ object MockData {
         ),
     )
 
-    val myItems = items.filter { it.sellerId == "user_kush" }
+    // Combined items: sample items first (one per category), then real items
+    val items: List<Item> get() = sampleItems + realItems
+
+    val myItems get() = realItems.filter { it.sellerId == "user_kush" }
 
     val offersForItem1 = listOf(
         Offer(
@@ -228,4 +264,36 @@ object MockData {
             status = "locked"
         )
     )
+
+    // ─── Auth helpers ─────────────────────────────────────────────────────────
+    fun findUserByCredentials(identifier: String, password: String): User? {
+        return registeredUsers.find { user ->
+            (user.email.equals(identifier, ignoreCase = true) ||
+             user.phone == identifier ||
+             user.phone == "+91$identifier") &&
+            user.password == password
+        }
+    }
+
+    fun registerUser(name: String, block: String, phone: String, email: String, password: String): User {
+        val newUser = User(
+            uid = "user_${System.currentTimeMillis()}",
+            phone = "+91$phone",
+            email = email,
+            name = name,
+            block = block,
+            password = password,
+            greenDots = 0,
+            redDots = 0
+        )
+        registeredUsers.add(newUser)
+        currentUser = newUser
+        isGuestMode = false
+        return newUser
+    }
+
+    fun loginUser(user: User) {
+        currentUser = user
+        isGuestMode = false
+    }
 }
